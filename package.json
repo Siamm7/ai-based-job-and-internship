@@ -1,0 +1,8 @@
+{
+  "name": "job-recommendation-system",
+  "private": true,
+  "scripts": {
+    "start:backend": "npm --prefix backend start",
+    "dev:backend": "npm --prefix backend run dev"
+  }
+}

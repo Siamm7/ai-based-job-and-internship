@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Registration</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h2>Job Recommendation System</h2>
+        
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="#">Jobs</a>
+            <a href="login.html">Login</a>
+        </nav>
+    </header>
+
+    <div class="register-container">
+
+        <h1>Create Student Account</h1>
+        <p>Join Job Recommendation System and find your opportunities.</p>
+
+        <form id="registerForm">
+
+            <label>Full Name</label>
+            <input type="text" id="fullName"
+                   placeholder="Enter your full name" required>
+
+            <label>Email Address</label>
+            <input type="email" id="email"
+                   placeholder="Enter your email" required>
+
+            <label>Password</label>
+            <input type="password" id="password"
+                   placeholder="Create a password" minlength="8" required>
+
+            <label>University Name</label>
+            <input type="text" id="university"
+                   placeholder="Enter your university" required>
+
+            <label>Department</label>
+            <select id="department" required>
+                <option value="">Select Department</option>
+                <option value="Software Engineering">Software Engineering</option>
+                <option value="CSE">Computer Science and Engineering</option>
+                <option value="EEE">Electrical and Electronic Engineering</option>
+                <option value="BBA">Business Administration</option>
+            </select>
+
+            <label>Skills</label>
+            <input type="text" id="skills"
+                   placeholder="Example: HTML, CSS, JavaScript" required>
+
+            <button type="submit">Create Account</button>
+
+        </form>
+
+    </div>
+
+    <script src="config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

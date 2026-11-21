@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Job Recommendation System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html"><span class="brand-mark">✦</span><span>Job Recommendation System<span></span></span></a>
+    <nav class="main-nav">
+      <a href="index.html">Home</a><a class="active" href="jobs.html">Explore Jobs</a>
+      <a href="my-applications.html">My Applications</a><a href="login.html">Log in</a><a href="profile.html">My Profile</a>
+    </nav>
+  </header>
+  <main class="page-shell">
+    <div class="page-heading"><span class="section-kicker">CAREER OPPORTUNITIES</span><h1>Find your next opportunity</h1><p>Explore roles that align with your skills, education and interests.</p></div>
+    <div class="jobs-toolbar">
+      <div class="search-wrap"><input type="text" id="searchInput" placeholder="Search by job title, company or skills..." aria-label="Search jobs"></div>
+      <select id="jobType" aria-label="Filter by job type">
+        <option value="All">All Opportunities</option><option value="Internship">Internship</option><option value="Full-time">Full-time Job</option>
+      </select>
+    </div>
+    <div class="results-head"><h2>Available Opportunities</h2><span>Explore and compare your skill match</span></div>
+    <div id="jobsContainer" class="jobs-list"></div>
+    <p id="noJobsMessage" aria-live="polite"></p>
+  </main>
+  <script src="config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

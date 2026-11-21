@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Frontend Backend Connection</title>
+</head>
+<body>
+
+    <h2>Frontend to Backend Connection Test</h2>
+
+    <button onclick="testConnection()">
+        Test Connection
+    </button>
+
+    <p id="result">Waiting...</p>
+
+    <script>
+        function testConnection() {
+
+            fetch("http://localhost:5000/api/test")
+
+                .then(response => response.json())
+
+                .then(data => {
+                    document.getElementById("result").innerText =
+                        data.message;
+                })
+
+                .catch(error => {
+                    document.getElementById("result").innerText =
+                        "Connection failed!";
+                });
+
+        }
+    </script>
+
+</body>
+</html>

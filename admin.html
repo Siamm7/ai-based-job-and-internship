@@ -1,0 +1,276 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 25px;
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            color: #222;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        h1 {
+            color: #2563eb;
+        }
+
+        .section {
+            background: white;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: bold;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 11px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        button {
+            padding: 10px 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 5px 4px 5px 0;
+            background: #2563eb;
+            color: white;
+        }
+
+        .delete-btn {
+            background: #dc2626;
+        }
+
+        .edit-btn {
+            background: #d97706;
+        }
+
+        .job-item, .application-item {
+            padding: 18px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            background: #fff;
+        }
+
+        .job-item h3, .application-item h3 {
+            color: #2563eb;
+            margin-top: 0;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+        }
+
+        .stat-card {
+            background: #eaf1ff;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .stat-card h2 {
+            margin: 5px 0;
+            color: #2563eb;
+        }
+
+        #adminMessage {
+            font-weight: bold;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Job Recommendation System</h1>
+
+        <p>Manage jobs, internships and student applications.</p>
+
+
+        <!-- DASHBOARD STATISTICS -->
+
+        <div class="section">
+
+            <h2>Dashboard Overview</h2>
+
+            <div class="stats">
+
+                <div class="stat-card">
+                    <p>Total Jobs</p>
+                    <h2 id="totalJobs">0</h2>
+                </div>
+
+                <div class="stat-card">
+                    <p>Total Applications</p>
+                    <h2 id="totalApplications">0</h2>
+                </div>
+
+                <div class="stat-card">
+                    <p>Pending Applications</p>
+                    <h2 id="pendingApplications">0</h2>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ADD / EDIT JOB -->
+
+        <div class="section">
+
+            <h2 id="jobFormHeading">Add New Job</h2>
+
+            <form id="adminJobForm">
+
+                <input type="hidden" id="editingJobId">
+
+                <div class="form-group">
+                    <label>Job Title</label>
+                    <input type="text" id="adminJobTitle" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Company Name</label>
+                    <input type="text" id="adminCompany" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Job Type</label>
+
+                    <select id="adminJobType" required>
+                        <option value="Internship">Internship</option>
+                        <option value="Full-time">Full-time</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Location</label>
+                    <input type="text" id="adminLocation" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Job Description</label>
+                    <textarea id="adminDescription" rows="4" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Required Skills</label>
+                    <input
+                        type="text"
+                        id="adminSkills"
+                        placeholder="HTML, CSS, JavaScript"
+                        required
+                    >
+                </div>
+
+                <button type="submit" id="jobSubmitButton">
+                    Add Job
+                </button>
+
+                <button type="button" id="cancelEditButton" hidden>
+                    Cancel Edit
+                </button>
+
+            </form>
+
+            <p id="adminMessage"></p>
+
+        </div>
+
+
+        <!-- IMPORT PUBLIC JOB BOARD LISTINGS -->
+        <div class="section">
+            <h2>Import Public Job Listings</h2>
+            <p>Import currently published jobs from a company's public Greenhouse or Lever board. Enter the board identifier (not a search keyword).</p>
+            <div class="form-group">
+                <label for="jobBoardProvider">Source platform</label>
+                <select id="jobBoardProvider">
+                    <option value="greenhouse">Greenhouse</option>
+                    <option value="lever">Lever</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="jobBoardName">Company board identifier</label>
+                <input id="jobBoardName" placeholder="e.g. stripe" />
+            </div>
+            <button type="button" id="importJobsButton">Import Public Jobs</button>
+            <p id="importMessage" aria-live="polite"></p>
+        </div>
+
+        <!-- MANAGE JOBS -->
+
+        <div class="section">
+
+            <h2>Manage Jobs</h2>
+
+            <div id="adminJobsContainer"></div>
+
+        </div>
+
+
+        <!-- MANAGE APPLICATIONS -->
+
+        <div class="section">
+
+            <h2>Student Applications</h2>
+
+            <div id="adminApplicationsContainer"></div>
+
+        </div>
+
+
+        <a href="jobs.html">Back to Student Job Page</a>
+
+    </div>
+
+
+    <!-- Load main script first -->
+    <script src="config.js"></script>
+  <script src="script.js"></script>
+
+    <!-- Load Admin script -->
+    <script src="admin.js"></script>
+
+</body>
+
+</html>

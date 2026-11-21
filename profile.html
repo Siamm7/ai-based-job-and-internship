@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Profile</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html"><span class="brand-mark">✦</span><span>Job Recommendation System<span></span></span></a>
+    <nav class="main-nav">
+      <a href="index.html">Home</a><a href="jobs.html">Explore Jobs</a>
+      <a href="my-applications.html">My Applications</a><a href="login.html">Log in</a><a class="active" href="profile.html">My Profile</a>
+    </nav>
+  </header>
+  <main class="page-shell">
+    <div class="page-heading"><span class="section-kicker">STUDENT DASHBOARD</span><h1>My Profile</h1><p>Manage your personal information, skills and resume in one place.</p></div>
+    <div class="profile-layout">
+      <section class="profile-container">
+        <h1>Personal Information</h1><p>Your profile details help us show relevant opportunities.</p>
+        <div class="profile-info">
+          <h3>PROFILE OVERVIEW</h3>
+          <p><strong>Name:</strong> <span id="profileName">Not available</span></p>
+          <p><strong>Email:</strong> <span id="profileEmail">Not available</span></p>
+          <p><strong>University:</strong> <span id="profileUniversity">Not available</span></p>
+          <p><strong>Department:</strong> <span id="profileDepartment">Not available</span></p>
+          <p style="grid-column:1/-1"><strong>Skills:</strong> <span id="profileSkills">Not available</span></p>
+        </div>
+      </section>
+
+      <section class="update-section">
+        <h3>Update Your Profile</h3>
+        <p style="font-size:13px;color:var(--muted);margin-bottom:12px">Keep your education and skills up to date.</p>
+        <form id="updateForm">
+          <div><label for="updateName">Full Name</label><input type="text" id="updateName" required></div>
+          <div><label for="updateUniversity">University</label><input type="text" id="updateUniversity" required></div>
+          <div><label for="updateDepartment">Department</label><input type="text" id="updateDepartment" required></div>
+          <div><label for="updateSkills">Skills</label><input type="text" id="updateSkills" placeholder="HTML, CSS, JavaScript" required></div>
+          <button class="btn" type="submit">Save Profile Changes →</button>
+        </form>
+        <p id="updateMessage" aria-live="polite"></p>
+      </section>
+
+      <section class="resume-section">
+        <h3>Resume &amp; Skills</h3>
+        <p>Upload your resume in PDF or DOCX format. The system will extract readable text and identify supported skills.</p>
+        <input type="file" id="resume" accept=".pdf,.docx">
+        <p id="fileName">No file selected</p>
+        <button class="btn" id="uploadBtn" type="button">Upload &amp; Analyse Resume →</button>
+        <p id="uploadMessage" aria-live="polite"></p>
+      </section>
+    </div>
+  </main>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.13.0/mammoth.browser.min.js"></script>
+  <script src="config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
